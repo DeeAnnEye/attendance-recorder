@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package swingPackage;
-
+import java.sql.*;
+import javax.swing.*;
 /**
  *
  * @author Admin
@@ -14,6 +15,7 @@ public class LoginFrame extends javax.swing.JFrame
     /**
      * Creates new form LoginFrame
      */
+    public static int user;
     public LoginFrame()
     {
         initComponents();
@@ -208,12 +210,37 @@ public class LoginFrame extends javax.swing.JFrame
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginBtnActionPerformed
     {//GEN-HEADEREND:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+        if (usrField.getText().isEmpty() || psdField.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(jPanel1, "Please enter Username/Password");
+        } else {
+
+            String userName = usrField.getText();
+            char[] ch = psdField.getPassword();
+            String password = new String(ch);
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance", "root", "");
+                PreparedStatement st = con.prepareStatement("Select * from teacher where username=? and password=?");
+
+                st.setString(1, userName);
+                st.setString(2, password);
+
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    user = rs.getInt("id");
+                    new Main().setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Login Failed");
+                }
+
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         
-        //Login btn
-        
-        new Main().setVisible(true);
-        dispose();
+        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_signupBtnActionPerformed
