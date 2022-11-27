@@ -265,7 +265,7 @@ public class SignupFrame extends javax.swing.JFrame
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance","root","");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendence","root","");
             PreparedStatement st = con.prepareStatement("INSERT INTO teacher(name,username,password,class_id) VALUES(?,?,?,?)");
 
             st.setString(1, name);

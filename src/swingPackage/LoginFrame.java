@@ -220,7 +220,7 @@ public class LoginFrame extends javax.swing.JFrame
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance", "root", "");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/attendence", "root", "");
                 PreparedStatement st = con.prepareStatement("Select * from teacher where username=? and password=?");
 
                 st.setString(1, userName);
