@@ -228,8 +228,19 @@ public class LoginFrame extends javax.swing.JFrame
                     user = rs.getInt("id");
                     class_id = rs.getInt("class_id");
                     tName = rs.getString("name");
+                    
+                    PreparedStatement stm = con.prepareStatement("Select * from attendance where date=?");
+                    stm.setDate(1,java.sql.Date.valueOf(java.time.LocalDate.now()));
+                    ResultSet r = st.executeQuery();
+                    
+                    if(r.next()){                    
+                    new StudentFrame().setVisible(true);
+                    dispose();
+                    }else{
                     new Main().setVisible(true);
                     dispose();
+                    }
+                    
                 } else {
                     JOptionPane.showMessageDialog(jPanel1, "Login Failed");
                 }
