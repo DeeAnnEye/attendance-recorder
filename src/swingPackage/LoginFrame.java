@@ -16,6 +16,8 @@ public class LoginFrame extends javax.swing.JFrame
      * Creates new form LoginFrame
      */
     public static int user;
+    public static int class_id;
+    public static String tName; 
     public LoginFrame()
     {
         initComponents();
@@ -28,8 +30,7 @@ public class LoginFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         sidePanel = new javax.swing.JPanel();
@@ -57,7 +58,7 @@ public class LoginFrame extends javax.swing.JFrame
         jLabel2.setFont(new java.awt.Font("Komika Axis", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 211, 105));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ATTENDENCE");
+        jLabel2.setText("ATTENDANCE");
 
         jLabel3.setFont(new java.awt.Font("Komika Axis", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 211, 105));
@@ -114,10 +115,8 @@ public class LoginFrame extends javax.swing.JFrame
         loginBtn.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         loginBtn.setForeground(new java.awt.Color(238, 238, 238));
         loginBtn.setText("Login");
-        loginBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
@@ -126,10 +125,8 @@ public class LoginFrame extends javax.swing.JFrame
         signupBtn.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         signupBtn.setForeground(new java.awt.Color(238, 238, 238));
         signupBtn.setText("Signup");
-        signupBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        signupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signupBtnActionPerformed(evt);
             }
         });
@@ -220,7 +217,7 @@ public class LoginFrame extends javax.swing.JFrame
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/attendence", "root", "");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance", "root", "");
                 PreparedStatement st = con.prepareStatement("Select * from teacher where username=? and password=?");
 
                 st.setString(1, userName);
@@ -229,6 +226,8 @@ public class LoginFrame extends javax.swing.JFrame
                 ResultSet rs = st.executeQuery();
                 if (rs.next()) {
                     user = rs.getInt("id");
+                    class_id = rs.getInt("class_id");
+                    tName = rs.getString("name");
                     new Main().setVisible(true);
                     dispose();
                 } else {

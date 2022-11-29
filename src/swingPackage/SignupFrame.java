@@ -58,7 +58,7 @@ public class SignupFrame extends javax.swing.JFrame
         jLabel2.setFont(new java.awt.Font("Komika Axis", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 211, 105));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ATTENDENCE");
+        jLabel2.setText("ATTENDANCE");
 
         jLabel3.setFont(new java.awt.Font("Komika Axis", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 211, 105));
@@ -265,7 +265,7 @@ public class SignupFrame extends javax.swing.JFrame
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendence","root","");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance","root","");
             PreparedStatement st = con.prepareStatement("INSERT INTO teacher(name,username,password,class_id) VALUES(?,?,?,?)");
 
             st.setString(1, name);

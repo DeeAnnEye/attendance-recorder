@@ -118,7 +118,7 @@
                   <Color blue="69" green="d3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="ATTENDENCE"/>
+                <Property name="text" type="java.lang.String" value="ATTENDANCE"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
